@@ -83,15 +83,16 @@ def self.first_X_students_in_grade_10(x)
       end.first
   end
 
-  def self.all_students_in_grade_X(students)
+   def self.all_students_in_grade_X(x)
     sql = <<-SQL
-      SELECT * FROM students
+      SELECT *
+      FROM students
       WHERE grade = ?
-      SQL
+    SQL
 
-      DB[:conn].execute(sql, grade).map do |row|
-        self.new_from_db(row)
-      end
+     DB[:conn].execute(sql, x).map do |row|
+      self.new_from_db(row)
+    end
   end
   
   def save
